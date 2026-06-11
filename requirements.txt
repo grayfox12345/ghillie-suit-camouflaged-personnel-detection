@@ -1,0 +1,8 @@
+Flask==2.3.3
+gunicorn==21.2.0
+# ultralytics is optional (large install). If you want model inference, uncomment the line below and ensure you have a compatible torch installed for your GPU/CPU.
+ultralytics==8.1.45
+# Note: ultralytics will pull a matching torch; on Windows you may need to install torch separately using the official wheel for your CUDA version.
+opencv-python
+Pillow
+numpy

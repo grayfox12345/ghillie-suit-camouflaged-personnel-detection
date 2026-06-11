@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% block title %}Ghillie Suit Detection | Model &amp; Dataset{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/model_style.css') }}">
+{% endblock %}
+
+{# Page 2: Model & Dataset Documentation #}
+{% block content %}
+    <main class="model-page">
+        <section class="page-hero">
+            <div class="container">
+                <h1>Model Architecture &amp; Dataset</h1>
+                <p>
+                    Comprehensive overview of our YOLOv8 model fine-tuned for ghillie suit camouflaged personnel detection.
+                </p>
+            </div>
+        </section>
+
+        <!-- Model Image Section -->
+        <section class="model-image-section">
+            <div class="container">
+                <div class="model-image-container">
+                    <img src="{{ url_for('static', filename='images/system archihtecture.png') }}" alt="System Architecture Visualization" style="max-width:600px; width:100%; height:auto;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture overview: descriptive text + configuration table -->
+        <section class="model-architecture" id="model">
+            <div class="container">
+                <h2>Model Architecture</h2>
+                <p>
+                    This deployment leverages the YOLOv8n variant, pre-trained on the COCO dataset and fine-tuned
+                    specifically for ghillie suit camouflaged personnel detection. The architecture builds upon the
+                    CSPDarknet53 backbone with a decoupled detection head, enabling fast, reliable predictions even on
+                    edge devices. The model has been optimized through transfer learning and fine-tuning on a custom
+                    dataset of ghillie-suited personnel, making it effective in challenging visual environments.
+                </p>
+                
+                <!-- Architecture Diagram -->
+                <div style="margin: var(--spacing-xl) 0;">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: var(--spacing-md); color: var(--color-text);">YOLOv8 Architecture Flow</h3>
+                    <p style="color: var(--color-text-light); font-size: 1.05rem; margin-bottom: var(--spacing-lg); max-width: 75ch;">
+                        The YOLOv8 architecture consists of five main stages: Input processing, Backbone feature extraction, 
+                        Neck feature fusion, Prediction heads, and Output generation. The diagram below illustrates the complete 
+                        data flow from input image to detected objects.
+                    </p>
+                    <div class="model-image-container" style="max-width: 1200px; text-align:center;">
+                            <img src="{{ url_for('static', filename='images/Image01.png') }}" alt="YOLOv8 Architecture Diagram" style="max-width:900px; width:100%; height:auto; display:inline-block; border-radius: var(--radius-md); box-shadow: var(--shadow-lg);">
+                        </div>
+                </div>
+                
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <caption>YOLOv8 Configuration Overview</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Component</th>
+                                <th scope="col">Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Architecture</td>
+                                <td>YOLOv8n</td>
+                            </tr>
+                            <tr>
+                                <td>Input Resolution</td>
+                                <td>640x640 pixels</td>
+                            </tr>
+                            <tr>
+                                <td>Backbone</td>
+                                <td>CSPDarknet53</td>
+                            </tr>
+                            <tr>
+                                <td>Head</td>
+                                <td>Decoupled Head</td>
+                            </tr>
+                            <tr>
+                                <td>Pre-trained on</td>
+                                <td>COCO Dataset</td>
+                            </tr>
+                            <tr>
+                                <td>Fine-tuned for</td>
+                                <td>Ghillie Suit Camouflaged Personnel Detection</td>
+                            </tr>
+                            <tr>
+                                <td>Training Epochs</td>
+                                <td>50 epochs</td>
+                            </tr>
+                            <tr>
+                                <td>Batch Size</td>
+                                <td>32</td>
+                            </tr>
+                            <tr>
+                                <td>Initial Learning Rate</td>
+                                <td>0.0001</td>
+                            </tr>
+                            <tr>
+                                <td>Final Learning Rate</td>
+                                <td>0.00001 (lr0 × 0.1)</td>
+                            </tr>
+                            <tr>
+                                <td>Optimizer</td>
+                                <td>Auto (AdamW recommended)</td>
+                            </tr>
+                            <tr>
+                                <td>Dropout</td>
+                                <td>0.1</td>
+                            </tr>
+                            <tr>
+                                <td>Early Stopping Patience</td>
+                                <td>50 epochs</td>
+                            </tr>
+                            <tr>
+                                <td>Confidence Threshold</td>
+                                <td>0.5 (default inference)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dataset summary: data processes + statistics table -->
+        <section class="dataset" id="dataset">
+            <div class="container">
+                <h2>Dataset Information</h2>
+                <p>
+                    The model was trained on a custom dataset specifically curated for ghillie suit camouflaged personnel detection.
+                    The dataset includes diverse scenarios with varying lighting conditions, backgrounds, and camouflage patterns
+                    to ensure robust performance in real-world deployment scenarios. Images are split into training and validation
+                    sets, with comprehensive annotations for bounding box localization. The dataset preparation follows YOLOv8
+                    format standards with proper YAML configuration for class definitions and data paths.
+                </p>
+                
+                <!-- Dataset Sample Images -->
+                <div style="margin: var(--spacing-xl) 0;">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: var(--spacing-md); color: var(--color-text);">Dataset Sample Images</h3>
+                    <p style="color: var(--color-text-light); font-size: 1.05rem; margin-bottom: var(--spacing-lg); max-width: 75ch;">
+                        The dataset focuses on a single detection class (<code>ghillie_soldier</code>) with diverse scenes,
+                        lighting, and background conditions. Each image is annotated with bounding boxes for precise localization.
+                    </p>
+                    <div class="model-image-container" style="max-width: 1200px;">
+                        <img src="{{ url_for('static', filename='images/Image02.png') }}" alt="Dataset Sample Images" style="width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-lg);">
+                    </div>
+                </div>
+                
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <caption>Dataset Summary Statistics</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Statistic</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">Unit / Context</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dataset Type</td>
+                                <td>Custom Ghillie Suit Personnel Dataset</td>
+                                <td>Specialized for ghillie-suited personnel</td>
+                            </tr>
+                            <tr>
+                                <td>Data Format</td>
+                                <td>YOLOv8 Format</td>
+                                <td>YAML configuration + images + labels</td>
+                            </tr>
+                            <tr>
+                                <td>Image Format</td>
+                                <td>JPG</td>
+                                <td>Standard image format</td>
+                            </tr>
+                            <tr>
+                                <td>Training Split</td>
+                                <td>Training Set</td>
+                                <td>Used for model training</td>
+                            </tr>
+                            <tr>
+                                <td>Validation Split</td>
+                                <td>Validation Set</td>
+                                <td>Used for model evaluation</td>
+                            </tr>
+                            <tr>
+                                <td>Primary Class</td>
+                                <td>ghillie_soldier</td>
+                                <td>Target detection class (1 class)</td>
+                            </tr>
+                            <tr>
+                                <td>Annotation Format</td>
+                                <td>Bounding Boxes</td>
+                                <td>YOLO format coordinates</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+

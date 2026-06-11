@@ -1,0 +1,7 @@
+# Keep this file inside dataset-splitM/. Ultralytics uses this folder as dataset root when `path` is omitted.
+train: Training/images
+val: Testing/images
+
+nc: 1
+names:
+  0: ghillie_soldier
