@@ -4,6 +4,14 @@ Flask-based web app for image upload and live webcam detection of personnel wear
 
 ![Architecture](static/images/system%20archihtecture.png)
 
+## Demo
+
+Detection examples from the project:
+
+| Example 1 | Example 2 |
+|---|---|
+| ![Demo 1](static/videos/demo-1.png) | ![Demo 2](static/videos/demo-2.png) |
+
 ## Project Highlights
 - YOLOv8 custom model with prioritized load order (`models/best.pt` → fallback `yolov8n.pt`).
 - Live detection via `/api/live_detect` (base64 frames) with annotated frame return.
